@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Егор АР - Автозапчасти и ремонт</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cookie&family=Rubik+One&family=Rubik:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="auth-modal" class="modal">
+        <div class="modal-content">
+            <h2>Авторизация</h2>
+            <form class="auth-form">
+                <input type="text" placeholder="Логин" required>
+                <input type="password" placeholder="Пароль" required>
+                <button type="submit" class="orange-btn">Войти</button>
+            </form>
+            <p class="switch-form">Ещё не с нами? <a href="#" id="show-register">Регистрируйся</a></p>
+        </div>
+    </div>
+
+    <div id="register-modal" class="modal">
+        <div class="modal-content">
+            <h2>Регистрация</h2>
+            <form class="auth-form">
+                <input type="text" placeholder="Имя" required>
+                <input type="text" placeholder="Фамилия" required>
+                <input type="email" placeholder="Email" required>
+                <input type="tel" placeholder="Телефон" required>
+                <input type="password" placeholder="Пароль" required>
+                <input type="password" placeholder="Повторите пароль" required>
+                <button type="submit" class="orange-btn">Регистрация</button>
+            </form>
+            <p class="switch-form">Уже есть аккаунт? <a href="#" id="show-login">Войти</a></p>
+        </div>
+    </div>
+
+    <header>
+        <div class="header-bg"></div>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="/api/placeholder/200/60" alt="Егор АР">
+                    <span class="logo-text">Егор АР</span>
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Главная</a></li>
+                    <li><a href="#catalog">Каталог</a></li>
+                    <li><a href="#about">Об организации</a></li>
+                    <li><a href="#contact">Контакты</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <button id="login-btn" class="login-btn">Войти</button>
+                <a href="#profile" class="profile-icon hidden">
+                    <img src="/api/placeholder/30/30" alt="Профиль">
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Дайте вашей технике лучшее</h1>
+                <p>Дайте вашей технике лучшее обслуживание, чтобы радовала Вас долго</p>
+                <a href="#catalog" class="orange-btn">Начать выбор</a>
+            </div>
+        </section>
+
+        <section class="services">
+            <div class="container">
+                <div class="service-items">
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <img src="/api/placeholder/60/60" alt="Автомобили">
+                        </div>
+                        <h3>Автомобили</h3>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <img src="/api/placeholder/60/60" alt="Мотоциклы">
+                        </div>
+                        <h3>Мотоциклы</h3>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <img src="/api/placeholder/60/60" alt="Грузовики">
+                        </div>
+                        <h3>Грузовики</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="team" id="team">
+            <div class="container">
+                <h2>НАША КОМАНДА</h2>
+                <div class="team-members">
+                    <div class="team-member">
+                        <div class="member-photo">
+                            <img src="/api/placeholder/150/150" alt="Егор Дзэээсович">
+                        </div>
+                        <h3>ЕГОР ДЗЭЭЭСОВИЧ</h3>
+                        <p>Генеральный директор компании ОАО "Егор АР". Мастер по продажам и подбору автозапчастей.</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-photo">
+                            <img src="/api/placeholder/150/150" alt="Марк Жигович">
+                        </div>
+                        <h3>МАРК ЖИГОВИЧ</h3>
+                        <p>Мастер по диагностике автомобилей. Проводит свои тренинги.</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-photo">
+                            <img src="/api/placeholder/150/150" alt="Каша Коленвалoвна">
+                        </div>
+                        <h3>КАША КОЛЕНВАЛOВНА</h3>
+                        <p>Лучший эксперт электротехники. Проводит мастер классы.</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-photo">
+                            <img src="/api/placeholder/150/150" alt="Вячеслав Шрусович">
+                        </div>
+                        <h3>ВЯЧЕСЛАВ ШРУСОВИЧ</h3>
+                        <p>Соучередитель компании ЗАО "Егор АР". Профессиональный механик.</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-photo">
+                            <img src="/api/placeholder/150/150" alt="Мир Исузович">
+                        </div>
+                        <h3>МИР ИСУЗОВИЧ</h3>
+                        <p>Главный ВТУЛКА ВАЗ. Многолетний опыт в сфере снабжения деталями.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="advantages" id="advantages">
+            <div class="container">
+                <h2>ПОЧЕМУ ВЫБИРАЮТ НАС?</h2>
+                <div class="advantages-items">
+                    <div class="advantage-item">
+                        <h3>Быстрые поставки</h3>
+                        <p>Наши клиенты могут рассчитывать на то, что заказанные ими детали будут в кратчайшие сроки доставлены</p>
+                    </div>
+                    <div class="advantage-item">
+                        <h3>Низкие цены</h3>
+                        <p>Мы работаем без посредников, что позволяет нам держать низкие цены, а товар у нас всегда качественный</p>
+                    </div>
+                    <div class="advantage-item">
+                        <h3>Оригинальные запчасти</h3>
+                        <p>У нас только оригинальные запчасти, которые идеально подойдут для вашего автомобиля</p>
+                    </div>
+                    <div class="advantage-item">
+                        <h3>Профессиональный персонал</h3>
+                        <p>У нас работают только профессионалы с большим опытом, которые всегда помогут с выбором нужных запчастей</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-form" id="contact-form">
+            <div class="container">
+                <h2>Остались вопросы?</h2>
+                <p>Оставьте запрос и наш специалист свяжется с Вами в ближайшее время!</p>
+                <form class="contact">
+                    <div class="form-group">
+                        <input type="text" placeholder="Ваше имя" required>
+                        <input type="tel" placeholder="Номер телефона" required>
+                    </div>
+                    <button type="submit" class="orange-btn">Отправить</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="index.html">
+                        <span class="logo-text">Егор АР</span>
+                    </a>
+                </div>
+                <div class="footer-info">
+                    <div class="footer-section">
+                        <h4>АДРЕСА</h4>
+                        <ul>
+                            <li>БЦ "ФУТУРИС" пр. Независимости, 173</li>
+                            <li>ул. Яна Чечота, 20</li>
+                            <li>ул. Герасименко, 51</li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>КОНТАКТЫ</h4>
+                        <ul>
+                            <li>Телефон: +375(29) 735-57-55</li>
+                            <li>Email: egoravtopodbor@gmail.com</li>
+                            <li>Пн-пт: с 7:00 до 23:00</li>
+                            <li>Сб-вс: с 9:00 до 21:00</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-social">
+                    <a href="#" class="social-icon">
+                        <img src="/api/placeholder/30/30" alt="Twitter">
+                    </a>
+                    <a href="#" class="social-icon">
+                        <img src="/api/placeholder/30/30" alt="Facebook">
+                    </a>
+                    <a href="#" class="social-icon">
+                        <img src="/api/placeholder/30/30" alt="Instagram">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Модальные окна авторизации/регистрации
+        const loginBtn = document.getElementById('login-btn');
+        const authModal = document.getElementById('auth-modal');
+        const registerModal = document.getElementById('register-modal');
+        const showRegister = document.getElementById('show-register');
+        const showLogin = document.getElementById('show-login');
+
+        loginBtn.addEventListener('click', () => {
+            authModal.style.display = 'flex';
+        });
+
+        showRegister.addEventListener('click', (e) => {
+            e.preventDefault();
+            authModal.style.display = 'none';
+            registerModal.style.display = 'flex';
+        });
+
+        showLogin.addEventListener('click', (e) => {
+            e.preventDefault();
+            registerModal.style.display = 'none';
+            authModal.style.display = 'flex';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === authModal) {
+                authModal.style.display = 'none';
+            }
+            if (e.target === registerModal) {
+                registerModal.style.display = 'none';
+            }
+        });
+
+        // Имитация формы авторизации для демонстрации
+        const authForm = document.querySelector('.auth-form');
+        if (authForm) {
+            authForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                authModal.style.display = 'none';
+                loginBtn.classList.add('hidden');
+                document.querySelector('.profile-icon').classList.remove('hidden');
+            });
+        }
+    </script>
+</body>
+</html>
