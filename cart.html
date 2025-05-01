@@ -15,8 +15,8 @@
       <div class="container">
         <div class="logo">
           <a href="index.html">
-            <span class="car-icon"><i class="fas fa-car"></i></span>
-            <span class="logo-text">Егор АР</span>
+            <img src="img/logo.png" alt="Logo" class="logo-icon">
+            <span class="logo-text">EgorAP</span>
           </a>
         </div>
         <nav>
@@ -79,35 +79,37 @@
   <footer>
     <div class="container">
       <div class="footer-content">
-        <div class="footer-logo">
-          <a href="index.html">
-            <span class="car-icon"><i class="fas fa-car"></i></span>
-            <span class="logo-text">Егор АР</span>
-          </a>
+        <div class="footer-logo-section">
+          <div class="footer-logo">
+            <a href="index.html">
+              <img src="img/logo.png" alt="Logo" class="logo-icon">
+              <span class="logo-text">EgorAP</span>
+            </a>
+          </div>
+          <div class="footer-social">
+            <a href="https://twitter.com/tesla"><img src="img/x.png" alt="Twitter" class="social-icon"></a>
+            <a href="https://facebook.com/bmw"><img src="img/facebook.png" alt="Facebook" class="social-icon"></a>
+            <a href="https://instagram.com/mercedesbenz"><img src="img/inst.png" alt="Instagram" class="social-icon"></a>
+          </div>
         </div>
         <div class="footer-info">
           <div class="footer-section">
             <h4>АДРЕСА</h4>
             <ul>
-              <li>БЦ "ФУТУРИС" пр. Независимости, 173</li>
-              <li>ул. Яна Чечота, 20</li>
-              <li>ул. Герасименко, 51</li>
+              <li><img src="img/Vector.png" alt="Pin" class="footer-icon">БЦ "ФУТУРИС" пр. Независимости, 173</li>
+              <li><img src="img/Vector.png" alt="Pin" class="footer-icon">ул. Яна Чечота, 20</li>
+              <li><img src="img/Vector.png" alt="Pin" class="footer-icon">ул. Герасименко, 51</li>
             </ul>
           </div>
           <div class="footer-section">
             <h4>КОНТАКТЫ</h4>
             <ul>
-              <li>Телефон: +375(29) 735-57-55</li>
-              <li>Email: egoravtopodpor@gmail.com</li>
-              <li>Пн-пт: с 7:00 до 23:00</li>
-              <li>Сб-вс: с 9:00 до 21:00</li>
+              <li><img src="img/telephone.png" alt="Phone" class="footer-icon">+375(29) 735-57-55</li>
+              <li><img src="img/mail.png" alt="Email" class="footer-icon">egoravtopodpor@gmail.com</li>
+              <li class="schedule-compact">Пн-пт: с 7:00 до 23:00</li>
+              <li class="schedule-compact">Сб-вс: с 9:00 до 21:00</li>
             </ul>
           </div>
-        </div>
-        <div class="footer-social">
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
         </div>
       </div>
     </div>
@@ -126,9 +128,9 @@
           <p class="cart-item-model"></p>
         </div>
         <div class="cart-item-quantity">
-          <button class="quantity-btn minus"><i class="fas fa-minus"></i></button>
+          <button class="quantity-btn minus"><img src="img/minus.png" alt="Minus"></button>
           <span class="quantity-value">1</span>
-          <button class="quantity-btn plus"><i class="fas fa-plus"></i></button>
+          <button class="quantity-btn plus"><img src="img/plus.png" alt="Plus"></button>
         </div>
       </div>
       <div class="cart-item-price"></div>
@@ -142,7 +144,6 @@
       const isLoggedIn = localStorage.getItem('isLoggedIn');
       
       if (!isLoggedIn) {
-        // Если пользователь не авторизован, перенаправляем на главную
         window.location.href = 'index.html';
         return;
       }
@@ -210,9 +211,9 @@
         
         // Устанавливаем данные
         title.textContent = item.name;
-        image.src = item.image || 'https://via.placeholder.com/100';
+        image.src = item.image || 'img/placeholder.png'; // Используем изображение из каталога или заглушку
         image.alt = item.name;
-        price.textContent = `${item.price} BYN`;
+        price.textContent = `${(parseFloat(item.price) * (item.quantity || 1)).toFixed(2)} BYN`;
         
         // Извлекаем бренд и модель из названия
         const brandMatch = item.name.match(/(.*?)\s/);
@@ -230,6 +231,7 @@
           if (currentQuantity > 1) {
             quantityValue.textContent = currentQuantity - 1;
             updateCartItemQuantity(index, currentQuantity - 1);
+            price.textContent = `${(parseFloat(item.price) * (currentQuantity - 1)).toFixed(2)} BYN`;
             updateTotalAmount();
           }
         });
@@ -238,13 +240,14 @@
           const currentQuantity = parseInt(quantityValue.textContent);
           quantityValue.textContent = currentQuantity + 1;
           updateCartItemQuantity(index, currentQuantity + 1);
+          price.textContent = `${(parseFloat(item.price) * (currentQuantity + 1)).toFixed(2)} BYN`;
           updateTotalAmount();
         });
         
         // Обработчик удаления товара
         removeBtn.addEventListener('click', function() {
           removeCartItem(index);
-          loadCart(); // Перезагружаем корзину
+          loadCart();
         });
         
         // Добавляем товар в контейнер
@@ -313,8 +316,6 @@
       
       window.location.href = 'index.html';
     });
-
-    
   </script>
 </body>
 </html>

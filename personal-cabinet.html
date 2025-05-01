@@ -15,8 +15,8 @@
       <div class="container">
         <div class="logo">
           <a href="index.html">
-            <span class="car-icon"><i class="fas fa-car"></i></span>
-            <span class="logo-text">Егор АР</span>
+            <img src="img/logo.png" alt="Logo" class="logo-icon">
+            <span class="logo-text">EgorAP</span>
           </a>
         </div>
         <nav>
@@ -49,54 +49,54 @@
       
       <div class="cabinet-content">
         <div class="profile-info">
-            <div class="profile-details">
-              <h3><i class="fas fa-user-circle"></i> Личная информация</h3>
-              <form id="profileForm">
-                <div class="info-row">
-                  <span class="label">Фамилия:</span>
-                  <span class="value" id="lastNameValue">Не указано</span>
-                  <input type="text" id="lastName" placeholder="Введите фамилию">
-                </div>
-                <div class="info-row">
-                  <span class="label">Имя:</span>
-                  <span class="value" id="firstNameValue">Не указано</span>
-                  <input type="text" id="firstName" placeholder="Введите имя">
-                </div>
-                <div class="info-row">
-                  <span class="label">Отчество:</span>
-                  <span class="value" id="patronymicValue">Не указано</span>
-                  <input type="text" id="patronymic" placeholder="Введите отчество">
-                </div>
-                <div class="info-row">
-                  <span class="label">Дата рождения:</span>
-                  <span class="value" id="birthDateValue">Не указано</span>
-                  <input type="date" id="birthDate">
-                </div>
-                <div class="info-row">
-                  <span class="label">Телефон:</span>
-                  <span class="value" id="phoneValue">Не указано</span>
-                  <input type="tel" id="phone" placeholder="+375XXXXXXXXX">
-                </div>
-                <div class="info-row">
-                  <span class="label">Эл. почта:</span>
-                  <span class="value" id="emailValue">Не указано</span>
-                  <input type="email" id="email" placeholder="example@mail.com">
-                </div>
-                <div class="edit-buttons" id="editButtons">
-                  <button type="submit" class="btn-primary" id="saveButton" style="display: none;">Сохранить</button>
-                  <button type="button" class="btn-secondary" id="cancelButton" style="display: none;">Отмена</button>
-                </div>
-                <div class="profile-actions">
-                  <button type="button" class="btn-secondary" id="editButton">Редактировать</button>
-                </div>
-              </form>
-            </div>
-            <div class="profile-photo">
-              <img src="https://via.placeholder.com/350x350" alt="Фото профиля">
-              <input type="file" id="profilePhotoInput" style="display: none;">
-              <button id="changePhotoBtn" class="btn-secondary">Изменить фото</button>
-            </div>
-          </div>          
+          <div class="profile-details">
+            <h3><i class="fas fa-user-circle"></i> Личная информация</h3>
+            <form id="profileForm">
+              <div class="info-row">
+                <span class="label">Фамилия:</span>
+                <span class="value" id="lastNameValue">Не указано</span>
+                <input type="text" id="lastName" placeholder="Введите фамилию">
+              </div>
+              <div class="info-row">
+                <span class="label">Имя:</span>
+                <span class="value" id="firstNameValue">Не указано</span>
+                <input type="text" id="firstName" placeholder="Введите имя">
+              </div>
+              <div class="info-row">
+                <span class="label">Отчество:</span>
+                <span class="value" id="patronymicValue">Не указано</span>
+                <input type="text" id="patronymic" placeholder="Введите отчество">
+              </div>
+              <div class="info-row">
+                <span class="label">Дата рождения:</span>
+                <span class="value" id="birthDateValue">Не указано</span>
+                <input type="date" id="birthDate">
+              </div>
+              <div class="info-row">
+                <span class="label">Телефон:</span>
+                <span class="value" id="phoneValue">Не указано</span>
+                <input type="tel" id="phone" placeholder="+375XXXXXXXXX">
+              </div>
+              <div class="info-row">
+                <span class="label">Эл. почта:</span>
+                <span class="value" id="emailValue">Не указано</span>
+                <input type="email" id="email" placeholder="example@mail.com">
+              </div>
+              <div class="edit-buttons" id="editButtons">
+                <button type="submit" class="btn-primary" id="saveButton" style="display: none;">Сохранить</button>
+                <button type="button" class="btn-secondary" id="cancelButton" style="display: none;">Отмена</button>
+              </div>
+              <div class="profile-actions">
+                <button type="button" class="btn-secondary" id="editButton">Редактировать</button>
+              </div>
+            </form>
+          </div>
+          <div class="profile-photo">
+            <img src="img/icon.jpg" alt="Фото профиля" id="profilePhoto">
+            <input type="file" id="profilePhotoInput" accept="image/*" style="display: none;">
+            <button id="changePhotoBtn" class="btn-secondary">Изменить фото</button>
+          </div>
+        </div>          
       </div>
     </div>
   </section>
@@ -105,35 +105,37 @@
   <footer>
     <div class="container">
       <div class="footer-content">
-        <div class="footer-logo">
-          <a href="index.html">
-            <span class="car-icon"><i class="fas fa-car"></i></span>
-            <span class="logo-text">Егор АР</span>
-          </a>
+        <div class="footer-logo-section">
+          <div class="footer-logo">
+            <a href="index.html">
+              <img src="img/logo.png" alt="Logo" class="logo-icon">
+              <span class="logo-text">EgorAP</span>
+            </a>
+          </div>
+          <div class="footer-social">
+            <a href="https://twitter.com/tesla"><img src="img/x.png" alt="Twitter" class="social-icon"></a>
+            <a href="https://facebook.com/bmw"><img src="img/x.png" alt="Facebook" class="social-icon"></a>
+            <a href="https://instagram.com/mercedesbenz"><img src="img/inst.png" alt="Instagram" class="social-icon"></a>
+          </div>
         </div>
         <div class="footer-info">
           <div class="footer-section">
             <h4>АДРЕСА</h4>
             <ul>
-              <li>БЦ "ФУТУРИС" пр. Независимости, 173</li>
-              <li>ул. Яна Чечота, 20</li>
-              <li>ул. Герасименко, 51</li>
+              <li><img src="img/Vector.png" alt="Pin" class="footer-icon">БЦ "ФУТУРИС" пр. Независимости, 173</li>
+              <li><img src="img/Vector.png" alt="Pin" class="footer-icon">ул. Яна Чечота, 20</li>
+              <li><img src="img/Vector.png" alt="Pin" class="footer-icon">ул. Герасименко, 51</li>
             </ul>
           </div>
           <div class="footer-section">
             <h4>КОНТАКТЫ</h4>
             <ul>
-              <li>Телефон: +375(29) 735-57-55</li>
-              <li>Email: egoravtopodpor@gmail.com</li>
-              <li>Пн-пт: с 7:00 до 23:00</li>
-              <li>Сб-вс: с 9:00 до 21:00</li>
+              <li><img src="img/telephone.png" alt="Phone" class="footer-icon">+375(29) 735-57-55</li>
+              <li><img src="img/mail.png" alt="Email" class="footer-icon">egoravtopodpor@gmail.com</li>
+              <li class="schedule-compact">Пн-пт: с 7:00 до 23:00</li>
+              <li class="schedule-compact">Сб-вс: с 9:00 до 21:00</li>
             </ul>
           </div>
-        </div>
-        <div class="footer-social">
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
         </div>
       </div>
     </div>
@@ -145,12 +147,11 @@
       const isLoggedIn = localStorage.getItem('isLoggedIn');
       
       if (!isLoggedIn) {
-        // Если пользователь не авторизован, перенаправляем на главную
         window.location.href = 'index.html';
         return;
       }
       
-      // Загрузка сохраненных данных профиля, если они есть
+      // Загрузка сохраненных данных профиля
       const userData = JSON.parse(localStorage.getItem('userData')) || {};
       
       if (userData.firstName) document.getElementById('firstName').value = userData.firstName;
@@ -166,6 +167,16 @@
       } else if (userData.email) {
         document.getElementById('email').value = userData.email;
       }
+      
+      // Загрузка фото профиля
+      const savedPhoto = localStorage.getItem('profilePhoto');
+      if (savedPhoto) {
+        document.getElementById('profilePhoto').src = savedPhoto;
+      }
+      
+      // Обновляем отображаемые значения
+      updateDisplayValues();
+      disableEditMode();
     });
 
     // Переключение между вкладками
@@ -181,9 +192,60 @@
         }
       });
     });
-    
-    // Обработка формы профиля
-    document.getElementById('profileForm').addEventListener('submit', function(e) {
+
+    // Настройка режима редактирования
+    const profileForm = document.getElementById('profileForm');
+    const editButton = document.getElementById('editButton');
+    const saveButton = document.getElementById('saveButton');
+    const cancelButton = document.getElementById('cancelButton');
+
+    // Функция для включения режима редактирования
+    function enableEditMode() {
+      profileForm.classList.add('edit-mode');
+      editButton.style.display = 'none';
+      saveButton.style.display = 'inline-block';
+      cancelButton.style.display = 'inline-block';
+    }
+
+    // Функция для отключения режима редактирования
+    function disableEditMode() {
+      profileForm.classList.remove('edit-mode');
+      editButton.style.display = 'inline-block';
+      saveButton.style.display = 'none';
+      cancelButton.style.display = 'none';
+    }
+
+    // Функция для обновления отображаемых значений
+    function updateDisplayValues() {
+      const userData = JSON.parse(localStorage.getItem('userData')) || {};
+      
+      document.getElementById('lastNameValue').textContent = userData.lastName || 'Не указано';
+      document.getElementById('firstNameValue').textContent = userData.firstName || 'Не указано';
+      document.getElementById('patronymicValue').textContent = userData.patronymic || 'Не указано';
+      document.getElementById('birthDateValue').textContent = userData.birthDate || 'Не указано';
+      document.getElementById('phoneValue').textContent = userData.phone || 'Не указано';
+      document.getElementById('emailValue').textContent = userData.email || 'Не указано';
+    }
+
+    // Обработчик кнопки редактирования
+    editButton.addEventListener('click', enableEditMode);
+
+    // Обработчик кнопки отмены
+    cancelButton.addEventListener('click', function() {
+      const userData = JSON.parse(localStorage.getItem('userData')) || {};
+      
+      if (userData.firstName) document.getElementById('firstName').value = userData.firstName;
+      if (userData.lastName) document.getElementById('lastName').value = userData.lastName;
+      if (userData.patronymic) document.getElementById('patronymic').value = userData.patronymic;
+      if (userData.birthDate) document.getElementById('birthDate').value = userData.birthDate;
+      if (userData.phone) document.getElementById('phone').value = userData.phone;
+      if (userData.email) document.getElementById('email').value = userData.email;
+      
+      disableEditMode();
+    });
+
+    // Обработчик отправки формы
+    profileForm.addEventListener('submit', function(e) {
       e.preventDefault();
       
       const userData = {
@@ -196,32 +258,63 @@
       };
       
       localStorage.setItem('userData', JSON.stringify(userData));
+      updateDisplayValues();
+      disableEditMode();
       
       alert('Данные профиля сохранены');
     });
-    
+
     // Обработка кнопки изменения фото
     document.getElementById('changePhotoBtn').addEventListener('click', function() {
       document.getElementById('profilePhotoInput').click();
     });
-    
-    // Функционал для загрузки фото
+
+    // Функционал для загрузки и обрезки фото
     document.getElementById('profilePhotoInput').addEventListener('change', function(e) {
       if (e.target.files && e.target.files[0]) {
         const reader = new FileReader();
         
         reader.onload = function(event) {
-          const profileImg = document.querySelector('.profile-photo img');
-          profileImg.src = event.target.result;
+          const img = new Image();
+          img.src = event.target.result;
           
-          // Сохраняем фото в localStorage (в реальном проекте это делается через API)
-          localStorage.setItem('profilePhoto', event.target.result);
-        }
+          img.onload = function() {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            const size = 350; // Размер иконки (350x350px)
+            
+            // Устанавливаем размер canvas
+            canvas.width = size;
+            canvas.height = size;
+            
+            // Вычисляем размеры для квадратной обрезки
+            let width = img.width;
+            let height = img.height;
+            let offsetX = 0;
+            let offsetY = 0;
+            
+            if (width > height) {
+              offsetX = (width - height) / 2;
+              width = height;
+            } else if (height > width) {
+              offsetY = (height - width) / 2;
+              height = width;
+            }
+            
+            // Рисуем обрезанное изображение
+            ctx.drawImage(img, offsetX, offsetY, width, height, 0, 0, size, size);
+            
+            // Получаем Data URL и сохраняем
+            const dataUrl = canvas.toDataURL('image/jpeg');
+            document.getElementById('profilePhoto').src = dataUrl;
+            localStorage.setItem('profilePhoto', dataUrl);
+          };
+        };
         
         reader.readAsDataURL(e.target.files[0]);
       }
     });
-    
+
     // Выход из аккаунта
     document.getElementById('logoutBtn').addEventListener('click', function(e) {
       e.preventDefault();
@@ -229,122 +322,8 @@
       localStorage.removeItem('isLoggedIn');
       localStorage.removeItem('username');
       
-      // Не удаляем данные профиля, чтобы они сохранились при следующем входе
-      
       window.location.href = 'index.html';
     });
-
-    // Загрузка фото профиля, если оно было сохранено
-    window.addEventListener('DOMContentLoaded', function() {
-      const savedPhoto = localStorage.getItem('profilePhoto');
-      if (savedPhoto) {
-        document.querySelector('.profile-photo img').src = savedPhoto;
-      }
-    });
-    // Настройка режима редактирования
-const profileForm = document.getElementById('profileForm');
-const editButton = document.getElementById('editButton');
-const saveButton = document.getElementById('saveButton');
-const cancelButton = document.getElementById('cancelButton');
-
-// Функция для включения режима редактирования
-function enableEditMode() {
-  profileForm.classList.add('edit-mode');
-  editButton.style.display = 'none';
-  saveButton.style.display = 'inline-block';
-  cancelButton.style.display = 'inline-block';
-}
-
-// Функция для отключения режима редактирования
-function disableEditMode() {
-  profileForm.classList.remove('edit-mode');
-  editButton.style.display = 'inline-block';
-  saveButton.style.display = 'none';
-  cancelButton.style.display = 'none';
-}
-
-// Функция для обновления отображаемых значений
-function updateDisplayValues() {
-  const userData = JSON.parse(localStorage.getItem('userData')) || {};
-  
-  document.getElementById('lastNameValue').textContent = userData.lastName || 'Не указано';
-  document.getElementById('firstNameValue').textContent = userData.firstName || 'Не указано';
-  document.getElementById('patronymicValue').textContent = userData.patronymic || 'Не указано';
-  document.getElementById('birthDateValue').textContent = userData.birthDate || 'Не указано';
-  document.getElementById('phoneValue').textContent = userData.phone || 'Не указано';
-  document.getElementById('emailValue').textContent = userData.email || 'Не указано';
-}
-
-// Обработчик кнопки редактирования
-editButton.addEventListener('click', enableEditMode);
-
-// Обработчик кнопки отмены
-cancelButton.addEventListener('click', function() {
-  const userData = JSON.parse(localStorage.getItem('userData')) || {};
-  
-  // Восстанавливаем значения из сохраненных данных
-  if (userData.firstName) document.getElementById('firstName').value = userData.firstName;
-  if (userData.lastName) document.getElementById('lastName').value = userData.lastName;
-  if (userData.patronymic) document.getElementById('patronymic').value = userData.patronymic;
-  if (userData.birthDate) document.getElementById('birthDate').value = userData.birthDate;
-  if (userData.phone) document.getElementById('phone').value = userData.phone;
-  if (userData.email) document.getElementById('email').value = userData.email;
-  
-  disableEditMode();
-});
-
-// Изменяем обработчик отправки формы
-profileForm.addEventListener('submit', function(e) {
-  e.preventDefault();
-  
-  const userData = {
-    firstName: document.getElementById('firstName').value,
-    lastName: document.getElementById('lastName').value,
-    patronymic: document.getElementById('patronymic').value,
-    birthDate: document.getElementById('birthDate').value,
-    phone: document.getElementById('phone').value,
-    email: document.getElementById('email').value
-  };
-  
-  localStorage.setItem('userData', JSON.stringify(userData));
-  updateDisplayValues();
-  disableEditMode();
-  
-  alert('Данные профиля сохранены');
-});
-
-// Инициализация при загрузке страницы
-document.addEventListener('DOMContentLoaded', function() {
-  const isLoggedIn = localStorage.getItem('isLoggedIn');
-  
-  if (!isLoggedIn) {
-    window.location.href = 'index.html';
-    return;
-  }
-  
-  // Загрузка сохраненных данных профиля
-  const userData = JSON.parse(localStorage.getItem('userData')) || {};
-  
-  if (userData.firstName) document.getElementById('firstName').value = userData.firstName;
-  if (userData.lastName) document.getElementById('lastName').value = userData.lastName;
-  if (userData.patronymic) document.getElementById('patronymic').value = userData.patronymic;
-  if (userData.birthDate) document.getElementById('birthDate').value = userData.birthDate;
-  if (userData.phone) document.getElementById('phone').value = userData.phone;
-  
-  // Email из регистрации
-  const userEmail = localStorage.getItem('email');
-  if (userEmail) {
-    document.getElementById('email').value = userEmail;
-  } else if (userData.email) {
-    document.getElementById('email').value = userData.email;
-  }
-  
-  // Обновляем отображаемые значения
-  updateDisplayValues();
-  
-  // Отключаем режим редактирования по умолчанию
-  disableEditMode();
-});
   </script>
 </body>
 </html>

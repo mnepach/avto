@@ -57,13 +57,13 @@
       <div class="container">
         <div class="logo">
           <a href="index.html">
-            <span class="car-icon"><i class="fas fa-car"></i></span>
-            <span class="logo-text">Егор АР</span>
+            <img src="img/logo.png" alt="Logo" class="logo-icon">
+            <span class="logo-text">EgorAP</span>
           </a>
         </div>
         <nav>
           <ul class="menu">
-            <li><a href="#" class="active">Главная</a></li>
+            <li><a href="index.html" class="active">Главная</a></li>
             <li><a href="#catalog">Каталог</a></li>
             <li><a href="#about">Об организации</a></li>
             <li><a href="#contacts">Контакты</a></li>
@@ -92,28 +92,25 @@
   <!-- Типы услуг -->
   <section class="services">
     <div class="container-wide">
-      <h2 class="services-title">Мы предоставляем детали для</h2>
-      <div class="services-divider">
-        <img src="img/Group 31.png" alt="Divider">
-      </div>
+      <h2 class="services-title section-title">Мы предоставляем детали для</h2>
       <div class="services-items">
         <div class="service-item">
           <div class="service-icon">
             <img src="img/famicons_car-sport-sharp.png" alt="Car Icon">
           </div>
-          <h3>Автомобили</h3>
+          <h3>Автомобилей</h3>
         </div>
         <div class="service-item">
           <div class="service-icon">
             <img src="img/fluent_vehicle-motorcycle-28-filled.png" alt="Motorcycle Icon">
           </div>
-          <h3>Мотоциклы</h3>
+          <h3>Мотоциклов</h3>
         </div>
         <div class="service-item">
           <div class="service-icon">
             <img src="img/ph_tractor-fill.png" alt="Tractor Icon">
           </div>
-          <h3>Спецтехника</h3>
+          <h3>Спецтехники</h3>
         </div>
       </div>
     </div>
@@ -203,13 +200,13 @@
     <div class="container">
       <h2 class="section-title">КАТАЛОГ</h2>
       <div class="search-bar">
-        <input type="text" placeholder="Поиск по каталогу...">
-        <button><i class="fas fa-search"></i></button>
+        <input type="text" id="searchInput" placeholder="Поиск по каталогу...">
+        <button id="searchButton" class="btn-search">Поиск</button>
       </div>
-      <div class="catalog-items">
-        <div class="catalog-item">
+      <div class="catalog-items" id="catalogItems">
+        <div class="catalog-item" data-search="масляный фильтр eurorepar bmw">
           <div class="item-image">
-            <img src="https://via.placeholder.com/200x150" alt="Масляный фильтр">
+            <img src="img/eurorepar.png" alt="Масляный фильтр">
           </div>
           <div class="item-info">
             <h3>EUROREPAR 1613723580 Масляный фильтр</h3>
@@ -226,9 +223,9 @@
             </div>
           </div>
         </div>
-        <div class="catalog-item">
+        <div class="catalog-item" data-search="лампа накаливания bosch">
           <div class="item-image">
-            <img src="https://via.placeholder.com/200x150" alt="Лампа накаливания">
+            <img src="img/bosch.png" alt="Лампа накаливания">
           </div>
           <div class="item-info">
             <h3>BOSCH 1 987 302 421 Лампа накаливания</h3>
@@ -245,9 +242,9 @@
             </div>
           </div>
         </div>
-        <div class="catalog-item">
+        <div class="catalog-item" data-search="иммобилайзер stellox audi">
           <div class="item-image">
-            <img src="https://via.placeholder.com/200x150" alt="Иммобилайзер">
+            <img src="img/stellox.png" alt="Иммобилайзер">
           </div>
           <div class="item-info">
             <h3>STELLOX 06-03570-SX Иммобилайзер</h3>
@@ -272,7 +269,7 @@
       <h2 class="section-title">КОНТАКТЫ</h2>
       <div class="contact-wrapper">
         <div class="contact-map">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2350.873611594808!2d27.5820066157531!3d53.92561998010274!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbcf7c5b5e5b5b%3A0x2b8c8d7c5d8e9f0a!2sProspekt%20Nezavisimosti%20173%2C%20Minsk%2C%20Belarus!5e0!3m2!1sen!2sru!4v1699999999999" width="100%" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2350.873611594808!2d27.5820066157531!3d53.92561998010274!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbcf7c5b5e5b5b%3A0x2b8c8d7c5d8e9f0a!2sProspekt%20Nezavisimosti%20173%2C%20Minsk%2C%20Belarus!5e0!3m2!1sen!2sru!4v1699999999999" width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </div>
         <div class="contact-info">
           <h3>КОНТАКТНАЯ ИНФОРМАЦИЯ</h3>
@@ -286,22 +283,14 @@
           </div>
           <div class="contact-details">
             <div class="phone">
-              <h4>Телефон:</h4>
-              <p>+375(29) 735-57-55</p>
+              <h4>Телефон: <a href="tel:+375297355755" style="color: #CE9C6B;">+375(29) 735-57-55</a></h4>
             </div>
             <div class="email">
-              <h4>Почта:</h4>
-              <p>egoravtopodpor@gmail.com</p>
+              <h4>Почта: <a href="mailto:egoravtopodpor@gmail.com" style="color: #CE9C6B;">egoravtopodpor@gmail.com</a></h4>
             </div>
             <div class="website">
-              <h4>Сайт:</h4>
-              <p>www.egorar.by</p>
+              <h4>Сайт: <a href="http://www.egorar.by" style="color: #CE9C6B;">www.egorar.by</a></h4>
             </div>
-          </div>
-          <div class="schedule">
-            <h4>Время работы:</h4>
-            <p>Пн-пт: с 7:00 до 23:00</p>
-            <p>Сб-вс: с 9:00 до 21:00</p>
           </div>
         </div>
       </div>
@@ -315,32 +304,30 @@
         <div class="footer-logo-section">
           <div class="footer-logo">
             <a href="index.html">
-              <span class="car-icon"><i class="fas fa-car"></i></span>
-              <span class="logo-text">Егор АР</span>
+              <img src="img/logo.png" alt="Logo" class="logo-icon">
+              <span class="logo-text">EgorAP</span>
             </a>
           </div>
           <div class="footer-social">
-            <a href="https://twitter.com/egorar"><i class="fab fa-twitter"></i></a>
-            <a href="https://facebook.com/egorar"><i class="fab fa-facebook"></i></a>
-            <a href="https://instagram.com/egorar"><i class="fab fa-instagram"></i></a>
-            <a href="https://vk.com/egorar"><i class="fab fa-vk"></i></a>
-            <a href="https://t.me/egorar"><i class="fab fa-telegram"></i></a>
+            <a href="https://twitter.com/tesla"><img src="img/x.png" alt="Twitter" class="social-icon"></a>
+            <a href="https://facebook.com/bmw"><img src="img/facebook.png" alt="Facebook" class="social-icon"></a>
+            <a href="https://instagram.com/mercedesbenz"><img src="img/inst.png" alt="Instagram" class="social-icon"></a>
           </div>
         </div>
         <div class="footer-info">
           <div class="footer-section">
             <h4>АДРЕСА</h4>
             <ul>
-              <li>БЦ "ФУТУРИС" пр. Независимости, 173</li>
-              <li>ул. Яна Чечота, 20</li>
-              <li>ул. Герасименко, 51</li>
+              <li><img src="img/Vector.png" alt="Pin" class="footer-icon">БЦ "ФУТУРИС" пр. Независимости, 173</li>
+              <li><img src="img/Vector.png" alt="Pin" class="footer-icon">ул. Яна Чечота, 20</li>
+              <li><img src="img/Vector.png" alt="Pin" class="footer-icon">ул. Герасименко, 51</li>
             </ul>
           </div>
           <div class="footer-section">
             <h4>КОНТАКТЫ</h4>
             <ul>
-              <li><i class="fas fa-phone"></i> +375(29) 735-57-55</li>
-              <li><i class="fas fa-envelope"></i> egoravtopodpor@gmail.com</li>
+              <li><img src="img/telephone.png" alt="Phone" class="footer-icon">+375(29) 735-57-55</li>
+              <li><img src="img/mail.png" alt="Email" class="footer-icon">egoravtopodpor@gmail.com</li>
               <li class="schedule-compact">Пн-пт: с 7:00 до 23:00</li>
               <li class="schedule-compact">Сб-вс: с 9:00 до 21:00</li>
             </ul>
@@ -360,6 +347,9 @@
     const showLogin = document.getElementById("showLogin");
     const buyButtons = document.querySelectorAll(".btn-buy");
     const menuLinks = document.querySelectorAll(".menu a");
+    const searchInput = document.getElementById("searchInput");
+    const searchButton = document.getElementById("searchButton");
+    const catalogItems = document.getElementById("catalogItems");
 
     // Открыть модальное окно авторизации
     loginBtn.onclick = function() {
@@ -535,17 +525,54 @@
       }
     });
 
-    // Переключение активного состояния в меню
+    // Плавная анимация для навигации
     menuLinks.forEach(link => {
       link.addEventListener('click', function(e) {
-        e.preventDefault();
-        menuLinks.forEach(l => l.classList.remove('active'));
-        this.classList.add('active');
         const href = this.getAttribute('href');
-        if (href && href !== '#') {
-          document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+        
+        // Если это ссылка на главную страницу, просто переходим
+        if (href === 'index.html') {
+          window.location.href = href;
+          return;
+        }
+        
+        // Для ссылок с якорем (#) используем плавную прокрутку
+        if (href.startsWith('#')) {
+          e.preventDefault();
+          menuLinks.forEach(l => l.classList.remove('active'));
+          this.classList.add('active');
+          
+          const targetSection = document.querySelector(href);
+          if (targetSection) {
+            targetSection.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
         }
       });
+    });
+
+    // Поиск в каталоге
+    searchButton.addEventListener('click', function() {
+      const query = searchInput.value.toLowerCase().trim();
+      const items = catalogItems.querySelectorAll('.catalog-item');
+
+      items.forEach(item => {
+        const searchData = item.getAttribute('data-search').toLowerCase();
+        if (query === '' || searchData.includes(query)) {
+          item.style.display = 'flex';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+
+    // Поиск при нажатии Enter
+    searchInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        searchButton.click();
+      }
     });
   </script>
 </body>
