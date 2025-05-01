@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Моя корзина - Егор АР</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cookie&family=Rubik:wght@400;500;700&family=Rubik+One&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <!-- Хедер -->
+  <header>
+    <div class="header-top">
+      <div class="container">
+        <div class="logo">
+          <a href="index.html">
+            <span class="car-icon"><i class="fas fa-car"></i></span>
+            <span class="logo-text">Егор АР</span>
+          </a>
+        </div>
+        <nav>
+          <ul class="menu">
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="index.html#catalog">Каталог</a></li>
+            <li><a href="index.html#about">Об организации</a></li>
+            <li><a href="index.html#contacts">Контакты</a></li>
+          </ul>
+        </nav>
+        <div class="auth-buttons">
+          <a href="cart.html" class="profile-icon active"><i class="fas fa-shopping-cart"></i></a>
+          <a href="personal-cabinet.html" class="profile-icon"><i class="fas fa-user"></i></a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Корзина -->
+  <section class="personal-cabinet">
+    <div class="container">
+      <h2 class="section-title">ЛИЧНЫЙ КАБИНЕТ</h2>
+      <p class="breadcrumbs">ГЛАВНАЯ -> ЛИЧНЫЙ КАБИНЕТ</p>
+      
+      <div class="cabinet-nav">
+        <div class="cabinet-nav-item">Профиль</div>
+        <div class="cabinet-nav-item active">Моя Корзина</div>
+      </div>
+      
+      <div class="cabinet-content">
+        <div class="cart-items">
+          <!-- Товар 1 -->
+          <div class="cart-item">
+            <img src="https://via.placeholder.com/100" alt="Borsehung B17982" class="cart-item-image">
+            <div class="cart-item-details">
+              <h3 class="cart-item-title">Borsehung B17982 Замок вала рулевого колеса</h3>
+              <div class="cart-item-specs">
+                <p>Бренд: Borsehung (Германия)</p>
+                <p>Для: Audi</p>
+                <p>вес [кг]: 0.3</p>
+                <p>необходимое количество: 1</p>
+                <p>материал: металл</p>
+              </div>
+            </div>
+            <div class="cart-item-price">111 BYN</div>
+          </div>
+          
+          <!-- Товар 2 -->
+          <div class="cart-item">
+            <img src="https://via.placeholder.com/100" alt="EUROREPAR 1613723580" class="cart-item-image">
+            <div class="cart-item-details">
+              <h3 class="cart-item-title">EUROREPAR 1613723580 Масляный фильтр</h3>
+              <div class="cart-item-specs">
+                <p>Бренд: EUROREPAR (Германия)</p>
+                <p>Для: BMW</p>
+                <p>внешний диаметр: 64.5</p>
+                <p>внутренний диаметр: 31.5</p>
+                <p>высота: 153</p>
+                <p>высота1: 149,1</p>
+              </div>
+            </div>
+            <div class="cart-item-price">111 BYN</div>
+          </div>
+        </div>
+        
+        <!-- Итоговая сумма -->
+        <div class="cart-total">
+          <span class="total-label">Итого:</span>
+          <span class="total-amount">222 BYN</span>
+        </div>
+        
+        <!-- Кнопка оплаты -->
+        <div class="cart-actions">
+          <button class="btn-primary">Оплатить</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Футер -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <a href="index.html">
+            <span class="car-icon"><i class="fas fa-car"></i></span>
+            <span class="logo-text">Егор АР</span>
+          </a>
+        </div>
+        <div class="footer-info">
+          <div class="footer-section">
+            <h4>АДРЕСА</h4>
+            <ul>
+              <li>БЦ "ФУТУРИС" пр. Независимости, 173</li>
+              <li>ул. Яна Чечота, 20</li>
+              <li>ул. Герасименко, 51</li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>КОНТАКТЫ</h4>
+            <ul>
+              <li>Телефон: +375(29) 735-57-55</li>
+              <li>Email: egoravtopodpor@gmail.com</li>
+              <li>Пн-пт: с 7:00 до 23:00</li>
+              <li>Сб-вс: с 9:00 до 21:00</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-social">
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Переключение между вкладками
+    const navItems = document.querySelectorAll('.cabinet-nav-item');
+    
+    navItems.forEach(item => {
+      item.addEventListener('click', function() {
+        navItems.forEach(nav => nav.classList.remove('active'));
+        this.classList.add('active');
+        
+        if (this.textContent === 'Профиль') {
+          window.location.href = 'personal-cabinet.html';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
