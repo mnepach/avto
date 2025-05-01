@@ -595,32 +595,37 @@ header {
     color: #939393;
 }
 
-.contact-details {
-    display: flex;
-    gap: 20px; /* Расстояние между элементами */
+/* Обновленные стили для контактной информации в один ряд */
+.contact-details-inline {
     margin-top: 15px;
 }
 
-.contact-details .phone,
-.contact-details .email,
-.contact-details .website {
-    flex: 1;
+.contact-row {
+    margin-bottom: 10px;
 }
 
-.phone p {
+.contact-row h4 {
+    margin-top: 0;
+    margin-bottom: 3px;
+    display: inline-block;
+}
+
+.contact-row .phone p,
+.contact-row .email p,
+.contact-row .website p {
     color: #FF7E00;
 }
 
-.email p {
-    color: #FF7E00;
-}
-
-.website p {
-    color: #FF7E00;
+/* Более компактное отображение времени работы */
+.schedule-compact-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
 
 .schedule p {
     color: #FBFBFD;
+    margin-bottom: 3px;
 }
 
 /* Footer */
@@ -637,8 +642,34 @@ footer {
     justify-content: space-between;
 }
 
+/* Новые стили для логотипа и социальных иконок */
+.footer-logo-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-right: 20px;
+}
+
 .footer-logo {
+    margin-bottom: 10px;
+}
+
+.footer-social {
+    display: flex;
+    gap: 12px;
     margin-bottom: 20px;
+}
+
+.footer-social a {
+    color: #fff;
+    font-size: 22px;
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.footer-social a:hover {
+    color: #fff;
+    transform: scale(1.2);
 }
 
 .footer-info {
@@ -655,6 +686,7 @@ footer {
     color: #fff;
     margin-bottom: 15px;
     font-weight: 400; /* Убираем жирность */
+    font-family: 'Rubik', sans-serif;
 }
 
 .footer-section ul {
@@ -666,21 +698,15 @@ footer {
     font-size: 14px;
 }
 
-.footer-social {
-    display: flex;
-    gap: 15px;
+/* Стили для компактного расписания в футере */
+.footer-section ul li.schedule-compact {
+    margin-bottom: 5px;
 }
 
-.footer-social a {
+/* Иконки для контактов в футере */
+.footer-section ul li i {
+    margin-right: 8px;
     color: #fff;
-    font-size: 22px;
-    transition: transform 0.3s ease;
-    display: inline-block;
-}
-
-.footer-social a:hover {
-    color: #fff;
-    transform: scale(1.2);
 }
 
 /* Modal Windows */
