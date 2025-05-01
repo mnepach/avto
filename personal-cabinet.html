@@ -49,42 +49,54 @@
       
       <div class="cabinet-content">
         <div class="profile-info">
-          <div class="profile-details">
-            <h3><i class="fas fa-user-circle"></i> Личная информация</h3>
-            <form id="profileForm">
-              <div class="info-row">
-                <span class="label">Фамилия:</span>
-                <input type="text" id="lastName" placeholder="Введите фамилию">
-              </div>
-              <div class="info-row">
-                <span class="label">Имя:</span>
-                <input type="text" id="firstName" placeholder="Введите имя">
-              </div>
-              <div class="info-row">
-                <span class="label">Отчество:</span>
-                <input type="text" id="patronymic" placeholder="Введите отчество">
-              </div>
-              <div class="info-row">
-                <span class="label">Дата рождения:</span>
-                <input type="date" id="birthDate">
-              </div>
-              <div class="info-row">
-                <span class="label">Телефон:</span>
-                <input type="tel" id="phone" placeholder="+375XXXXXXXXX">
-              </div>
-              <div class="info-row">
-                <span class="label">Эл. почта:</span>
-                <input type="email" id="email" placeholder="example@mail.com">
-              </div>
-              <button type="submit" class="btn-primary">Сохранить</button>
-            </form>
-          </div>
-          <div class="profile-photo">
-            <img src="https://via.placeholder.com/350x350" alt="Фото профиля">
-            <input type="file" id="profilePhotoInput" style="display: none;">
-            <button id="changePhotoBtn" class="btn-secondary">Изменить фото</button>
-          </div>
-        </div>
+            <div class="profile-details">
+              <h3><i class="fas fa-user-circle"></i> Личная информация</h3>
+              <form id="profileForm">
+                <div class="info-row">
+                  <span class="label">Фамилия:</span>
+                  <span class="value" id="lastNameValue">Не указано</span>
+                  <input type="text" id="lastName" placeholder="Введите фамилию">
+                </div>
+                <div class="info-row">
+                  <span class="label">Имя:</span>
+                  <span class="value" id="firstNameValue">Не указано</span>
+                  <input type="text" id="firstName" placeholder="Введите имя">
+                </div>
+                <div class="info-row">
+                  <span class="label">Отчество:</span>
+                  <span class="value" id="patronymicValue">Не указано</span>
+                  <input type="text" id="patronymic" placeholder="Введите отчество">
+                </div>
+                <div class="info-row">
+                  <span class="label">Дата рождения:</span>
+                  <span class="value" id="birthDateValue">Не указано</span>
+                  <input type="date" id="birthDate">
+                </div>
+                <div class="info-row">
+                  <span class="label">Телефон:</span>
+                  <span class="value" id="phoneValue">Не указано</span>
+                  <input type="tel" id="phone" placeholder="+375XXXXXXXXX">
+                </div>
+                <div class="info-row">
+                  <span class="label">Эл. почта:</span>
+                  <span class="value" id="emailValue">Не указано</span>
+                  <input type="email" id="email" placeholder="example@mail.com">
+                </div>
+                <div class="edit-buttons" id="editButtons">
+                  <button type="submit" class="btn-primary" id="saveButton" style="display: none;">Сохранить</button>
+                  <button type="button" class="btn-secondary" id="cancelButton" style="display: none;">Отмена</button>
+                </div>
+                <div class="profile-actions">
+                  <button type="button" class="btn-secondary" id="editButton">Редактировать</button>
+                </div>
+              </form>
+            </div>
+            <div class="profile-photo">
+              <img src="https://via.placeholder.com/350x350" alt="Фото профиля">
+              <input type="file" id="profilePhotoInput" style="display: none;">
+              <button id="changePhotoBtn" class="btn-secondary">Изменить фото</button>
+            </div>
+          </div>          
       </div>
     </div>
   </section>
@@ -229,6 +241,110 @@
         document.querySelector('.profile-photo img').src = savedPhoto;
       }
     });
+    // Настройка режима редактирования
+const profileForm = document.getElementById('profileForm');
+const editButton = document.getElementById('editButton');
+const saveButton = document.getElementById('saveButton');
+const cancelButton = document.getElementById('cancelButton');
+
+// Функция для включения режима редактирования
+function enableEditMode() {
+  profileForm.classList.add('edit-mode');
+  editButton.style.display = 'none';
+  saveButton.style.display = 'inline-block';
+  cancelButton.style.display = 'inline-block';
+}
+
+// Функция для отключения режима редактирования
+function disableEditMode() {
+  profileForm.classList.remove('edit-mode');
+  editButton.style.display = 'inline-block';
+  saveButton.style.display = 'none';
+  cancelButton.style.display = 'none';
+}
+
+// Функция для обновления отображаемых значений
+function updateDisplayValues() {
+  const userData = JSON.parse(localStorage.getItem('userData')) || {};
+  
+  document.getElementById('lastNameValue').textContent = userData.lastName || 'Не указано';
+  document.getElementById('firstNameValue').textContent = userData.firstName || 'Не указано';
+  document.getElementById('patronymicValue').textContent = userData.patronymic || 'Не указано';
+  document.getElementById('birthDateValue').textContent = userData.birthDate || 'Не указано';
+  document.getElementById('phoneValue').textContent = userData.phone || 'Не указано';
+  document.getElementById('emailValue').textContent = userData.email || 'Не указано';
+}
+
+// Обработчик кнопки редактирования
+editButton.addEventListener('click', enableEditMode);
+
+// Обработчик кнопки отмены
+cancelButton.addEventListener('click', function() {
+  const userData = JSON.parse(localStorage.getItem('userData')) || {};
+  
+  // Восстанавливаем значения из сохраненных данных
+  if (userData.firstName) document.getElementById('firstName').value = userData.firstName;
+  if (userData.lastName) document.getElementById('lastName').value = userData.lastName;
+  if (userData.patronymic) document.getElementById('patronymic').value = userData.patronymic;
+  if (userData.birthDate) document.getElementById('birthDate').value = userData.birthDate;
+  if (userData.phone) document.getElementById('phone').value = userData.phone;
+  if (userData.email) document.getElementById('email').value = userData.email;
+  
+  disableEditMode();
+});
+
+// Изменяем обработчик отправки формы
+profileForm.addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const userData = {
+    firstName: document.getElementById('firstName').value,
+    lastName: document.getElementById('lastName').value,
+    patronymic: document.getElementById('patronymic').value,
+    birthDate: document.getElementById('birthDate').value,
+    phone: document.getElementById('phone').value,
+    email: document.getElementById('email').value
+  };
+  
+  localStorage.setItem('userData', JSON.stringify(userData));
+  updateDisplayValues();
+  disableEditMode();
+  
+  alert('Данные профиля сохранены');
+});
+
+// Инициализация при загрузке страницы
+document.addEventListener('DOMContentLoaded', function() {
+  const isLoggedIn = localStorage.getItem('isLoggedIn');
+  
+  if (!isLoggedIn) {
+    window.location.href = 'index.html';
+    return;
+  }
+  
+  // Загрузка сохраненных данных профиля
+  const userData = JSON.parse(localStorage.getItem('userData')) || {};
+  
+  if (userData.firstName) document.getElementById('firstName').value = userData.firstName;
+  if (userData.lastName) document.getElementById('lastName').value = userData.lastName;
+  if (userData.patronymic) document.getElementById('patronymic').value = userData.patronymic;
+  if (userData.birthDate) document.getElementById('birthDate').value = userData.birthDate;
+  if (userData.phone) document.getElementById('phone').value = userData.phone;
+  
+  // Email из регистрации
+  const userEmail = localStorage.getItem('email');
+  if (userEmail) {
+    document.getElementById('email').value = userEmail;
+  } else if (userData.email) {
+    document.getElementById('email').value = userData.email;
+  }
+  
+  // Обновляем отображаемые значения
+  updateDisplayValues();
+  
+  // Отключаем режим редактирования по умолчанию
+  disableEditMode();
+});
   </script>
 </body>
 </html>

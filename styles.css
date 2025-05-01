@@ -83,8 +83,13 @@
     transition: background-color 0.3s ease;
   }
   
-  .btn-primary:hover {
-    background-color: #e67200;
+  .btn-primary, .btn-secondary {
+    transition: all 0.3s ease;
+  }
+  
+  .btn-primary:hover, .btn-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
   .btn-secondary {
@@ -212,6 +217,10 @@
   .profile-icon {
     margin-left: 15px;
     font-size: 18px;
+  }
+
+  .profile-icon.active {
+    color: #ff7e00;
   }
   
   /* Main Banner */
@@ -532,9 +541,10 @@
   
   /* Footer */
   footer {
-    background-color: #111;
+    background: linear-gradient(135deg, #ff7e00 0%, #111 100%);
     color: #fff;
     padding: 40px 0;
+    margin-top: 40px;
   }
   
   .footer-content {
@@ -558,12 +568,13 @@
   }
   
   .footer-section h4 {
-    color: #ff7e00;
+    color: #fff;
     margin-bottom: 15px;
+    font-weight: 700;
   }
-  
+
   .footer-section ul li {
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     font-size: 14px;
   }
   
@@ -572,15 +583,17 @@
     gap: 15px;
   }
   
-  .footer-social a {
-    color: #fff;
-    font-size: 20px;
-    transition: color 0.3s ease;
-  }
-  
-  .footer-social a:hover {
-    color: #ff7e00;
-  }
+.footer-social a {
+  color: #fff;
+  font-size: 22px;
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+
+.footer-social a:hover {
+  color: #fff;
+  transform: scale(1.2);
+}
   
   /* Modal Windows */
   .modal {
@@ -679,6 +692,10 @@
     flex: 2;
     min-width: 300px;
   }
+
+  .profile-details form {
+    position: relative;
+  }
   
   .profile-photo {
     flex: 1;
@@ -700,12 +717,59 @@
   }
   
   .profile-details .info-row {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
   }
   
   .profile-details .label {
     font-weight: 500;
     margin-right: 10px;
+    width: 130px;
+    flex-shrink: 0;
+  }
+  
+  .profile-details .value {
+    font-weight: 400;
+    color: #333;
+    flex-grow: 1;
+    padding: 8px 10px;
+    border-radius: 4px;
+    background-color: transparent;
+  }
+  
+  .profile-details input {
+    display: none;
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: 'Rubik', sans-serif;
+    font-size: 14px;
+  }
+
+  .edit-mode .value {
+    display: none;
+  }
+  
+  .edit-mode input {
+    display: block;
+  }
+  
+  .edit-buttons {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+  }
+  
+  .profile-actions {
+    margin-top: 20px;
+  }
+  
+  .breadcrumbs {
+    color: #777;
+    margin-bottom: 20px;
   }
   
   /* Shopping Cart */
@@ -714,12 +778,13 @@
   }
   
   .cart-item {
-    display: flex;
-    margin-bottom: 15px;
-    padding: 15px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    align-items: center;
+    border: 1px solid #eee;
+    transition: box-shadow 0.3s ease;
+  }
+
+  .cart-item:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   }
   
   .cart-item-image {
@@ -727,6 +792,21 @@
     height: 100px;
     object-fit: contain;
     margin-right: 20px;
+  }
+
+  .cart-item-image-container {
+    width: 120px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+  }
+
+  .cart-item-quantity {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
   }
   
   .cart-item-details {
@@ -771,6 +851,38 @@
   
   .cart-actions {
     text-align: center;
+  }
+
+  .quantity-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .quantity-value {
+    margin: 0 10px;
+    font-weight: 500;
+  }
+  
+  .cart-item-remove {
+    background: none;
+    border: none;
+    color: #999;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 15px;
+    transition: color 0.3s ease;
+  }
+  
+  .cart-item-remove:hover {
+    color: #ff3333;
   }
   
   /* Responsive Styles */
