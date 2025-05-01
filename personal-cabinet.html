@@ -30,6 +30,7 @@
         <div class="auth-buttons">
           <a href="cart.html" class="profile-icon"><i class="fas fa-shopping-cart"></i></a>
           <a href="personal-cabinet.html" class="profile-icon active"><i class="fas fa-user"></i></a>
+          <a href="#" id="logoutBtn" class="btn-auth">Выйти</a>
         </div>
       </div>
     </div>
@@ -50,33 +51,38 @@
         <div class="profile-info">
           <div class="profile-details">
             <h3><i class="fas fa-user-circle"></i> Личная информация</h3>
-            <div class="info-row">
-              <span class="label">Фамилия:</span>
-              <span>Пилипчук</span>
-            </div>
-            <div class="info-row">
-              <span class="label">Имя:</span>
-              <span>Егор</span>
-            </div>
-            <div class="info-row">
-              <span class="label">Отчество:</span>
-              <span>Николаевич</span>
-            </div>
-            <div class="info-row">
-              <span class="label">Дата рождения:</span>
-              <span>27.07.2052</span>
-            </div>
-            <div class="info-row">
-              <span class="label">Телефон:</span>
-              <span>+375291647452</span>
-            </div>
-            <div class="info-row">
-              <span class="label">Эл. почта:</span>
-              <span>egoravtopodpor@gmail.com</span>
-            </div>
+            <form id="profileForm">
+              <div class="info-row">
+                <span class="label">Фамилия:</span>
+                <input type="text" id="lastName" placeholder="Введите фамилию">
+              </div>
+              <div class="info-row">
+                <span class="label">Имя:</span>
+                <input type="text" id="firstName" placeholder="Введите имя">
+              </div>
+              <div class="info-row">
+                <span class="label">Отчество:</span>
+                <input type="text" id="patronymic" placeholder="Введите отчество">
+              </div>
+              <div class="info-row">
+                <span class="label">Дата рождения:</span>
+                <input type="date" id="birthDate">
+              </div>
+              <div class="info-row">
+                <span class="label">Телефон:</span>
+                <input type="tel" id="phone" placeholder="+375XXXXXXXXX">
+              </div>
+              <div class="info-row">
+                <span class="label">Эл. почта:</span>
+                <input type="email" id="email" placeholder="example@mail.com">
+              </div>
+              <button type="submit" class="btn-primary">Сохранить</button>
+            </form>
           </div>
           <div class="profile-photo">
             <img src="https://via.placeholder.com/350x350" alt="Фото профиля">
+            <input type="file" id="profilePhotoInput" style="display: none;">
+            <button id="changePhotoBtn" class="btn-secondary">Изменить фото</button>
           </div>
         </div>
       </div>
@@ -122,6 +128,34 @@
   </footer>
 
   <script>
+    // Проверка авторизации
+    document.addEventListener('DOMContentLoaded', function() {
+      const isLoggedIn = localStorage.getItem('isLoggedIn');
+      
+      if (!isLoggedIn) {
+        // Если пользователь не авторизован, перенаправляем на главную
+        window.location.href = 'index.html';
+        return;
+      }
+      
+      // Загрузка сохраненных данных профиля, если они есть
+      const userData = JSON.parse(localStorage.getItem('userData')) || {};
+      
+      if (userData.firstName) document.getElementById('firstName').value = userData.firstName;
+      if (userData.lastName) document.getElementById('lastName').value = userData.lastName;
+      if (userData.patronymic) document.getElementById('patronymic').value = userData.patronymic;
+      if (userData.birthDate) document.getElementById('birthDate').value = userData.birthDate;
+      if (userData.phone) document.getElementById('phone').value = userData.phone;
+      
+      // Email из регистрации
+      const userEmail = localStorage.getItem('email');
+      if (userEmail) {
+        document.getElementById('email').value = userEmail;
+      } else if (userData.email) {
+        document.getElementById('email').value = userData.email;
+      }
+    });
+
     // Переключение между вкладками
     const navItems = document.querySelectorAll('.cabinet-nav-item');
     
@@ -134,6 +168,66 @@
           window.location.href = 'cart.html';
         }
       });
+    });
+    
+    // Обработка формы профиля
+    document.getElementById('profileForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const userData = {
+        firstName: document.getElementById('firstName').value,
+        lastName: document.getElementById('lastName').value,
+        patronymic: document.getElementById('patronymic').value,
+        birthDate: document.getElementById('birthDate').value,
+        phone: document.getElementById('phone').value,
+        email: document.getElementById('email').value
+      };
+      
+      localStorage.setItem('userData', JSON.stringify(userData));
+      
+      alert('Данные профиля сохранены');
+    });
+    
+    // Обработка кнопки изменения фото
+    document.getElementById('changePhotoBtn').addEventListener('click', function() {
+      document.getElementById('profilePhotoInput').click();
+    });
+    
+    // Функционал для загрузки фото
+    document.getElementById('profilePhotoInput').addEventListener('change', function(e) {
+      if (e.target.files && e.target.files[0]) {
+        const reader = new FileReader();
+        
+        reader.onload = function(event) {
+          const profileImg = document.querySelector('.profile-photo img');
+          profileImg.src = event.target.result;
+          
+          // Сохраняем фото в localStorage (в реальном проекте это делается через API)
+          localStorage.setItem('profilePhoto', event.target.result);
+        }
+        
+        reader.readAsDataURL(e.target.files[0]);
+      }
+    });
+    
+    // Выход из аккаунта
+    document.getElementById('logoutBtn').addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      localStorage.removeItem('isLoggedIn');
+      localStorage.removeItem('username');
+      
+      // Не удаляем данные профиля, чтобы они сохранились при следующем входе
+      
+      window.location.href = 'index.html';
+    });
+
+    // Загрузка фото профиля, если оно было сохранено
+    window.addEventListener('DOMContentLoaded', function() {
+      const savedPhoto = localStorage.getItem('profilePhoto');
+      if (savedPhoto) {
+        document.querySelector('.profile-photo img').src = savedPhoto;
+      }
     });
   </script>
 </body>

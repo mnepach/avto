@@ -30,6 +30,7 @@
         <div class="auth-buttons">
           <a href="cart.html" class="profile-icon active"><i class="fas fa-shopping-cart"></i></a>
           <a href="personal-cabinet.html" class="profile-icon"><i class="fas fa-user"></i></a>
+          <a href="#" id="logoutBtn" class="btn-auth">Выйти</a>
         </div>
       </div>
     </div>
@@ -47,50 +48,28 @@
       </div>
       
       <div class="cabinet-content">
-        <div class="cart-items">
-          <!-- Товар 1 -->
-          <div class="cart-item">
-            <img src="https://via.placeholder.com/100" alt="Borsehung B17982" class="cart-item-image">
-            <div class="cart-item-details">
-              <h3 class="cart-item-title">Borsehung B17982 Замок вала рулевого колеса</h3>
-              <div class="cart-item-specs">
-                <p>Бренд: Borsehung (Германия)</p>
-                <p>Для: Audi</p>
-                <p>вес [кг]: 0.3</p>
-                <p>необходимое количество: 1</p>
-                <p>материал: металл</p>
-              </div>
-            </div>
-            <div class="cart-item-price">111 BYN</div>
+        <div id="emptyCart" style="text-align: center; display: none;">
+          <i class="fas fa-shopping-cart" style="font-size: 64px; color: #ddd; margin-bottom: 20px;"></i>
+          <h3>Ваша корзина пуста</h3>
+          <p>Перейдите в <a href="index.html#catalog">каталог</a>, чтобы выбрать товары</p>
+        </div>
+        
+        <div id="cartContent">
+          <div class="cart-items" id="cartItemsContainer">
+            <!-- Товары будут добавляться сюда динамически -->
           </div>
           
-          <!-- Товар 2 -->
-          <div class="cart-item">
-            <img src="https://via.placeholder.com/100" alt="EUROREPAR 1613723580" class="cart-item-image">
-            <div class="cart-item-details">
-              <h3 class="cart-item-title">EUROREPAR 1613723580 Масляный фильтр</h3>
-              <div class="cart-item-specs">
-                <p>Бренд: EUROREPAR (Германия)</p>
-                <p>Для: BMW</p>
-                <p>внешний диаметр: 64.5</p>
-                <p>внутренний диаметр: 31.5</p>
-                <p>высота: 153</p>
-                <p>высота1: 149,1</p>
-              </div>
-            </div>
-            <div class="cart-item-price">111 BYN</div>
+          <!-- Итоговая сумма -->
+          <div class="cart-total">
+            <span class="total-label">Итого:</span>
+            <span class="total-amount" id="totalAmount">0 BYN</span>
           </div>
-        </div>
-        
-        <!-- Итоговая сумма -->
-        <div class="cart-total">
-          <span class="total-label">Итого:</span>
-          <span class="total-amount">222 BYN</span>
-        </div>
-        
-        <!-- Кнопка оплаты -->
-        <div class="cart-actions">
-          <button class="btn-primary">Оплатить</button>
+          
+          <!-- Кнопка оплаты -->
+          <div class="cart-actions">
+            <button class="btn-primary" id="checkoutBtn">Оплатить</button>
+            <button class="btn-secondary" id="clearCartBtn">Очистить корзину</button>
+          </div>
         </div>
       </div>
     </div>
@@ -134,7 +113,44 @@
     </div>
   </footer>
 
+  <!-- Шаблон для товара в корзине -->
+  <template id="cartItemTemplate">
+    <div class="cart-item">
+      <div class="cart-item-image-container">
+        <img src="" alt="" class="cart-item-image">
+      </div>
+      <div class="cart-item-details">
+        <h3 class="cart-item-title"></h3>
+        <div class="cart-item-specs">
+          <p class="cart-item-brand"></p>
+          <p class="cart-item-model"></p>
+        </div>
+        <div class="cart-item-quantity">
+          <button class="quantity-btn minus">-</button>
+          <span class="quantity-value">1</span>
+          <button class="quantity-btn plus">+</button>
+        </div>
+      </div>
+      <div class="cart-item-price"></div>
+      <button class="cart-item-remove"><i class="fas fa-trash"></i></button>
+    </div>
+  </template>
+
   <script>
+    // Проверка авторизации
+    document.addEventListener('DOMContentLoaded', function() {
+      const isLoggedIn = localStorage.getItem('isLoggedIn');
+      
+      if (!isLoggedIn) {
+        // Если пользователь не авторизован, перенаправляем на главную
+        window.location.href = 'index.html';
+        return;
+      }
+      
+      // Загрузка корзины
+      loadCart();
+    });
+
     // Переключение между вкладками
     const navItems = document.querySelectorAll('.cabinet-nav-item');
     
@@ -147,6 +163,155 @@
           window.location.href = 'personal-cabinet.html';
         }
       });
+    });
+
+    // Загрузка корзины
+    function loadCart() {
+      const cartItemsContainer = document.getElementById('cartItemsContainer');
+      const totalAmountElement = document.getElementById('totalAmount');
+      const emptyCartElement = document.getElementById('emptyCart');
+      const cartContentElement = document.getElementById('cartContent');
+      
+      // Получаем корзину из localStorage
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      
+      // Если корзина пуста, показываем соответствующее сообщение
+      if (cart.length === 0) {
+        emptyCartElement.style.display = 'block';
+        cartContentElement.style.display = 'none';
+        return;
+      }
+      
+      // Иначе показываем содержимое корзины
+      emptyCartElement.style.display = 'none';
+      cartContentElement.style.display = 'block';
+      
+      // Очищаем контейнер перед добавлением товаров
+      cartItemsContainer.innerHTML = '';
+      
+      // Общая сумма
+      let totalAmount = 0;
+      
+      // Добавляем товары из корзины
+      cart.forEach((item, index) => {
+        const template = document.getElementById('cartItemTemplate');
+        const cartItem = document.importNode(template.content, true);
+        
+        // Заполняем данные товара
+        const title = cartItem.querySelector('.cart-item-title');
+        const image = cartItem.querySelector('.cart-item-image');
+        const price = cartItem.querySelector('.cart-item-price');
+        const brand = cartItem.querySelector('.cart-item-brand');
+        const model = cartItem.querySelector('.cart-item-model');
+        const quantityValue = cartItem.querySelector('.quantity-value');
+        const removeBtn = cartItem.querySelector('.cart-item-remove');
+        const minusBtn = cartItem.querySelector('.quantity-btn.minus');
+        const plusBtn = cartItem.querySelector('.quantity-btn.plus');
+        
+        // Устанавливаем данные
+        title.textContent = item.name;
+        image.src = item.image || 'https://via.placeholder.com/100';
+        image.alt = item.name;
+        price.textContent = `${item.price} BYN`;
+        
+        // Извлекаем бренд и модель из названия
+        const brandMatch = item.name.match(/(.*?)\s/);
+        const modelMatch = item.name.match(/\s(.*?)\s/);
+        
+        brand.textContent = `Бренд: ${brandMatch ? brandMatch[1] : 'Не указан'}`;
+        model.textContent = `Модель: ${modelMatch ? modelMatch[1] : 'Не указана'}`;
+        
+        // Количество
+        quantityValue.textContent = item.quantity || 1;
+        
+        // Обработчики событий для кнопок количества
+        minusBtn.addEventListener('click', function() {
+          const currentQuantity = parseInt(quantityValue.textContent);
+          if (currentQuantity > 1) {
+            quantityValue.textContent = currentQuantity - 1;
+            updateCartItemQuantity(index, currentQuantity - 1);
+            updateTotalAmount();
+          }
+        });
+        
+        plusBtn.addEventListener('click', function() {
+          const currentQuantity = parseInt(quantityValue.textContent);
+          quantityValue.textContent = currentQuantity + 1;
+          updateCartItemQuantity(index, currentQuantity + 1);
+          updateTotalAmount();
+        });
+        
+        // Обработчик удаления товара
+        removeBtn.addEventListener('click', function() {
+          removeCartItem(index);
+          loadCart(); // Перезагружаем корзину
+        });
+        
+        // Добавляем товар в контейнер
+        cartItemsContainer.appendChild(cartItem);
+        
+        // Добавляем стоимость товара к общей сумме
+        totalAmount += parseFloat(item.price) * (item.quantity || 1);
+      });
+      
+      // Обновляем общую сумму
+      totalAmountElement.textContent = `${totalAmount.toFixed(2)} BYN`;
+    }
+    
+    // Обновление количества товара
+    function updateCartItemQuantity(index, quantity) {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      
+      if (cart[index]) {
+        cart[index].quantity = quantity;
+        localStorage.setItem('cart', JSON.stringify(cart));
+      }
+    }
+    
+    // Обновление общей суммы
+    function updateTotalAmount() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const totalAmountElement = document.getElementById('totalAmount');
+      
+      let totalAmount = 0;
+      cart.forEach(item => {
+        totalAmount += parseFloat(item.price) * (item.quantity || 1);
+      });
+      
+      totalAmountElement.textContent = `${totalAmount.toFixed(2)} BYN`;
+    }
+    
+    // Удаление товара из корзины
+    function removeCartItem(index) {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      
+      cart.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cart));
+    }
+
+    // Обработчик кнопки очистки корзины
+    document.getElementById('clearCartBtn').addEventListener('click', function() {
+      if (confirm('Вы уверены, что хотите очистить корзину?')) {
+        localStorage.setItem('cart', JSON.stringify([]));
+        loadCart();
+      }
+    });
+
+    // Обработчик кнопки оплаты
+    document.getElementById('checkoutBtn').addEventListener('click', function() {
+      alert('Спасибо за покупку! Ваш заказ принят в обработку.');
+      localStorage.setItem('cart', JSON.stringify([]));
+      loadCart();
+    });
+    
+    // Выход из аккаунта
+    document.getElementById('logoutBtn').addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      localStorage.removeItem('isLoggedIn');
+      localStorage.removeItem('username');
+      
+      window.location.href = 'index.html';
     });
   </script>
 </body>
