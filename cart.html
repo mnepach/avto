@@ -43,7 +43,7 @@
       <p class="breadcrumbs">ГЛАВНАЯ -> ЛИЧНЫЙ КАБИНЕТ</p>
       
       <div class="cabinet-nav">
-        <div class="cabinet-nav-item">Профиль</div>
+        <div class="cabinet-nav-item" onclick="window.location.href='personal-cabinet.html'">Профиль</div>
         <div class="cabinet-nav-item active">Моя Корзина</div>
       </div>
       
@@ -139,6 +139,25 @@
   </template>
 
   <script>
+    // Каталог товаров с информацией об изображениях
+    const productCatalog = {
+      "1": {
+        name: "EUROREPAR 1613723580 Масляный фильтр",
+        price: "22.90",
+        image: "img/eurorepar.png"
+      },
+      "2": {
+        name: "BOSCH 1 987 302 421 Лампа накаливания",
+        price: "10.10",
+        image: "img/bosch.png"
+      },
+      "3": {
+        name: "STELLOX 06-03570-SX Иммобилайзер",
+        price: "40",
+        image: "img/stellox.png"
+      }
+    };
+
     // Проверка авторизации
     document.addEventListener('DOMContentLoaded', function() {
       const isLoggedIn = localStorage.getItem('isLoggedIn');
@@ -150,20 +169,6 @@
       
       // Загрузка корзины
       loadCart();
-    });
-
-    // Переключение между вкладками
-    const navItems = document.querySelectorAll('.cabinet-nav-item');
-    
-    navItems.forEach(item => {
-      item.addEventListener('click', function() {
-        navItems.forEach(nav => nav.classList.remove('active'));
-        this.classList.add('active');
-        
-        if (this.textContent === 'Профиль') {
-          window.location.href = 'personal-cabinet.html';
-        }
-      });
     });
 
     // Загрузка корзины
@@ -211,13 +216,21 @@
         
         // Устанавливаем данные
         title.textContent = item.name;
-        image.src = item.image || 'img/placeholder.png'; // Используем изображение из каталога или заглушку
+        
+        // Получаем правильное изображение из каталога по id
+        if (item.id && productCatalog[item.id]) {
+          image.src = productCatalog[item.id].image;
+        } else {
+          // Резервное изображение, если id не найден
+          image.src = 'img/placeholder.png';
+        }
+        
         image.alt = item.name;
         price.textContent = `${(parseFloat(item.price) * (item.quantity || 1)).toFixed(2)} BYN`;
         
         // Извлекаем бренд и модель из названия
-        const brandMatch = item.name.match(/(.*?)\s/);
-        const modelMatch = item.name.match(/\s(.*?)\s/);
+        const brandMatch = item.name.match(/^([^\s]+)/);
+        const modelMatch = item.name.match(/\s(\d+[\s\d]*)/);
         
         brand.textContent = `Бренд: ${brandMatch ? brandMatch[1] : 'Не указан'}`;
         model.textContent = `Модель: ${modelMatch ? modelMatch[1] : 'Не указана'}`;
